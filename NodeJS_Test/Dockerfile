@@ -11,7 +11,5 @@ COPY index.js ./
 # package.json에 설정된 종속성 모듈 설치
 RUN npm i
 
-EXPOSE 8080
-
 # 시작 명령어
 CMD ["npm","start"];
