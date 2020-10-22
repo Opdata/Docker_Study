@@ -1,6 +1,9 @@
 #node 베이스 이미지 사용
 FROM node
 
+# WORK Directory 생성
+WORKDIR /usr/src/app
+
 # package*json 복사
 COPY package*.json ./
 COPY index.js ./
