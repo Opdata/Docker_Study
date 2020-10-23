@@ -13,5 +13,7 @@ RUN npm i
 # COPY 명령어 압축 버전(해당 디렉토리의 모든 파일 복사)
 COPY ./ ./
 
+# Volume 추가할것
+
 # 시작 명령어
 CMD ["npm","start"];
