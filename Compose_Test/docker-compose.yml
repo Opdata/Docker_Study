@@ -1,0 +1,9 @@
+# docker-compose.yml
+version: "3" # 도커 컴포즈의 버전
+services: # 이곳에 실행하려는 컨테이너들을 명시
+  redis-server: # redis-server 라는 redis server 컨테이너 이름 지정
+    images: "redis" # 컨테이너에서 사용하는 이미지
+  node-app: # 컨테이너 이름
+    build: ./ # 현 디렉토리에 있는 Dockerfile
+    ports:
+      - "5000:8080" # 포트 맵핑 로컬포트 : 컨테이너 포트
