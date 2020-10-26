@@ -13,7 +13,7 @@ const client = redis.createClient({
 // 0부터 시작
 client.set("number", 0);
 
-app.get("/", (res, res) => {
+app.get("/", (req, res) => {
   client("number", (err, number) => {
     // 숫자 가져온 후 1씩 증가
     client.set("number", parseInt(number + 1));
