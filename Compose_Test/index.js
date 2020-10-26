@@ -1,4 +1,4 @@
-const express = requrie("express");
+const express = require("express");
 const redis = require("redis");
 
 const app = express();
@@ -14,10 +14,10 @@ const client = redis.createClient({
 client.set("number", 0);
 
 app.get("/", (req, res) => {
-  client("number", (err, number) => {
+  client.get("number", (err, number) => {
     // 숫자 가져온 후 1씩 증가
-    client.set("number", parseInt(number + 1));
-    res.send("숫자가 1씩 증가한다. 숫자 : ", number);
+    res.send("숫자가 1씩 증가한다. 숫자 : " + number);
+    client.set("number", parseInt(number) + 1);
   });
 });
 
