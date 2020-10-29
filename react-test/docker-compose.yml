@@ -1,0 +1,16 @@
+version: "3"
+services:
+  react:
+    container_name: docker-react # 컨테이너 이름 설정
+    build:
+      context: ./ # 도커 이미지를 구성하기 위한 위치
+      dockerfile: Dockerfile.dev # 도커 파일 지정
+    ports: # 포트 맵핑 로컬 : 컨테이너
+      - "3000:3000"
+    volumes: # 로컬에 있는 파일들 볼륨 맵핑
+      - "./:/usr/src/app"
+      - "/usr/src/app/node_modules"
+
+    environment: # 윈도우에서만 필요한 리액트 핫 리로딩 적용
+      - CHOKIDAR_USEPOLLING=true
+    stdin_open: true # 리액트에서만 필요함, 리액트 앱을 끌 때 필요
