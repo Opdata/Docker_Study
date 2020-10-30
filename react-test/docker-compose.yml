@@ -8,9 +8,24 @@ services:
     ports: # 포트 맵핑 로컬 : 컨테이너
       - "3000:3000"
     volumes: # 로컬에 있는 파일들 볼륨 맵핑
-      - "./:/usr/src/app"
       - "/usr/src/app/node_modules"
-
+      - "./:/usr/src/app"
     environment: # 윈도우에서만 필요한 리액트 핫 리로딩 적용
       - CHOKIDAR_USEPOLLING=true
-    stdin_open: true # 리액트에서만 필요함, 리액트 앱을 끌 때 필요
+    command: ["npm", "start"] # 명령어
+    stdin_open: true # 리액트에서만 필요함, 리액트 앱을 끌 때 필요(-i 옵션 Interactive)
+    tty: true # -t 옵션(TTY)
+
+  # 테스트용 컨테이너 추가
+  test:
+    container_name: test-react
+    build:
+      context: ./
+      dockerfile: Dockerfile.dev
+    volumes:
+      - "/usr/src/app/node_modules"
+      - "./:/usr/src/app"
+    command: ["npm", "test"] # 명령어
+    stdin_open: true # 리액트에서만 필요함, 리액트 앱을 끌 때 필요(-i 옵션 Interactive)
+    tty: true # -t 옵션(TTY)
+
