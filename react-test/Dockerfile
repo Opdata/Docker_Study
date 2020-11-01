@@ -8,7 +8,7 @@ RUN npm i
 
 COPY ./ ./
 
-CMD ["npm","build"]
+RUN npm run build
 
 FROM nginx
 
