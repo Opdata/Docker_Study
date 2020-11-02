@@ -1,0 +1,25 @@
+# travis.yml
+
+# root 권한 부여
+sudo: required
+
+# python, ruby 등 언어 선택, 여기서는 generic 사용
+language: generic
+
+# Travis 도커 환경 구성
+services:
+  - docker
+
+# 스크립트를 실행할 수 있는 환경 구성
+before_install:
+  - cd /react-test
+  - echo "start Creating an image with dockerfile"
+  - docker build -t reactimg -f Dockerfile.dev ./
+
+#실행할 스크립트(테스트 실행), -- --coverage 는 테스트 출력을 더 상세하게 보기 위함
+script:
+  - docker run -e CI=true reactimg npm test -- --coverage
+
+# 테스트 성공 후 확인
+after_success:
+  - echo "Test Success"
