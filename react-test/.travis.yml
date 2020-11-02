@@ -12,8 +12,9 @@ services:
 
 # 스크립트를 실행할 수 있는 환경 구성
 before_install:
+  - cd /react-test
   - echo "start Creating an image with dockerfile"
-  - docker build -t reactimg -f Dockerfile.dev /react-test
+  - docker build -t reactimg -f Dockerfile.dev ./
 
 #실행할 스크립트(테스트 실행), -- --coverage 는 테스트 출력을 더 상세하게 보기 위함
 script:
